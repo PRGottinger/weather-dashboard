@@ -1,11 +1,16 @@
 var submitButton = document.querySelector("#city-search");
 submitButton.addEventListener("click", getWeatherData);
 
+var cityInfo = document.querySelector("#city");
+
 var apiKey = "73bbd2f586aef621510ff0f4728c0bc6";
 
 function getWeatherData() {
   var cityInfo = document.querySelector("#city");
   var cityName = cityInfo.value;
+
+  document.querySelector("#city-name").textContent = cityName;
+
   var geoCodingURL =
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
     cityName +

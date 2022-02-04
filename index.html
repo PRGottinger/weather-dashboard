@@ -3,11 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=
-    , initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link
       rel="stylesheet"
@@ -24,7 +20,10 @@
         </div>
       </div>
 
-      <div class="row">
+     <!--container-->
+      <div class="d-flex flex-row">
+
+        <!--Search City-->
         <div class="col-3 m-2 bg-light">
           <h3>Search for a City:</h3>
           <div class="input-group mb-2">
@@ -37,28 +36,61 @@
               Search<ion-icon name="search-outline"></ion-icon>
             </button>
           </div>
-
-
-      <div class="row"></div>
-      <div class="col-9">
-        <div class="card">
-          <div id="today-weather" class="card-body"></div>
         </div>
-        
-          <div class="col">
+
+        <!--Today's Weather-->
+          <!-- <div id="today-weather" class="row border border-primary w-75 p-5">
+            <div class="col-9">
+            <h3 class="">Today's Weather</h3>
+          </div>
+          
+        </div> -->
+
+        <div id="today-weather" class="row border border-primary w-75 p-5">
+            <div class="col-9">
+            <h3 class="">Today's Weather</h3>
+            <p id="temp"></p>
+          </div>
+          <div class="container border-primary">
+            
             <h3>5-Day Forecast:</h3>
           </div>
-        </div>
 
-        <div class="row">
-        <div class="col-3">
-          <ul id="city-list" class="list-group list-group-flush">
-            <!-- <li class="list-group-item"></li> -->
-          </ul>
+          <div class="card w-75">
+            <div class="card-body"></div>
+          </div>
+       
+
+        </div> <!--container end-->
+          
         </div>
       </div>
 
 
+
+          
+
+        <!-- 5 day forcast-->
+          <!-- <div class="container border-primary">
+            
+            <h3>5-Day Forecast:</h3>
+          </div>
+
+          <div class="card w-75 h-100" stlye="">
+            <div class="card-body"></div>
+          </div>
+       
+
+        </div> container end -->
+
+        <!--city list-->
+        <div class="row">
+          <div class="col-3">
+            <ul id="city-list" class="list-group list-group-flush">
+              <!-- <li class="list-group-item"></li> -->
+            </ul>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -67,3 +99,6 @@
     <script src="./assets/script.js"></script>
   </body>
 </html>
+
+
+

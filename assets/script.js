@@ -32,13 +32,29 @@ function getWeatherData() {
         "&appid=" +
         apiKey;
 
-      fetch(weatherURL)
+      var weatherFiveDayURL = fetch(weatherURL)
         .then((response) => response.json())
         .then(function (weatherData) {
           console.log(weatherData);
 
           document.querySelector("#temp").textContent =
             weatherData.current.temp;
+
+          document.querySelector("#wind").textContent =
+            weatherData.current.wind_speed;
+
+          document.querySelector("#humidity").textContent =
+            weatherData.current.humidity;
+
+          document.querySelector("#uv").textContent = weatherData.current.uvi;
+
+          var i = 0;
+          while (i < 5) {
+            var content = new Date(weatherData.daily[i].dt * 1000);
+            document.querySelector("#deez-nutz").innerHTML +=
+              "<div class='card'>" + (content.toLocaleDateString() + "</div>");
+            i += 1;
+          }
         });
     });
 }

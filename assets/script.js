@@ -1,6 +1,8 @@
 var submitButton = document.querySelector("#city-search");
 submitButton.addEventListener("click", getWeatherData);
 
+var cities = [];
+
 var cityInfo = document.querySelector("#city");
 
 var apiKey = "73bbd2f586aef621510ff0f4728c0bc6";
@@ -8,6 +10,9 @@ var apiKey = "73bbd2f586aef621510ff0f4728c0bc6";
 function getWeatherData() {
   var cityInfo = document.querySelector("#city");
   var cityName = cityInfo.value;
+  var saveCity = localStorage.setItem("city-list", JSON.stringify(cityName));
+  var printCity = localStorage.getItem("city-list");
+  // console.log(printCity);
 
   document.querySelector("#city-name").textContent = cityName;
 
@@ -55,31 +60,13 @@ function getWeatherData() {
             cardEl.className = "card";
 
             var cardIconEl = document.createElement("div");
-            cardIconEl.textContent = weatherData.daily[i].weather[0].main;
+            cardIconEl.textContent = weatherData.daily[i].weather[0].icon;
 
-            var weatherIcon = $("<img>");
+            var openWeatherIcon = `http://openweathermap.org/img/wn/${weatherData.daily[i].weather[0].icon}@2x.png`;
+            let weatherIcon = document.createElement("img");
+            weatherIcon.src = openWeatherIcon;
 
-            if (cardIconEl === "Clouds") {
-              weatherIcon.attr(
-                "src",
-                "https://img.icons8.com/color/48/000000/cloud.png"
-              );
-            } else if (cardIconEl === "Clear") {
-              weatherIcon.attr(
-                "src",
-                "https://img.icons8.com/color/48/000000/summer.png"
-              );
-            } else if (cardIconEl === "Snow") {
-              weatherIcon.attr(
-                "src",
-                "https://img.icons8.com/color/48/000000/snow.png"
-              );
-            } else if (cardIconEl === "Rain") {
-              weatherIcon.attr(
-                "src",
-                "https://img.icons8.com/color/48/000000/rain.png"
-              );
-            }
+            cardEl.appendChild(weatherIcon);
 
             var cardDateEl = document.createElement("div");
             // cardDateEl.className = "card";
@@ -87,26 +74,21 @@ function getWeatherData() {
 
             var cardTempEl = document.createElement("div");
             // cardTempEl.className = "card";
-            cardTempEl.textContent = weatherData.daily[i].temp.max;
+            cardTempEl.textContent =
+              "Temp: " + weatherData.daily[i].temp.max + " °F";
 
             var cardWindEl = document.createElement("div");
-            cardWindEl.textContent = weatherData.daily[i].wind_speed;
+            cardWindEl.textContent =
+              "Wind Speed: " + weatherData.daily[i].wind_speed + " MPH";
 
             cardEl.appendChild(cardDateEl);
-            cardEl.appendChild(cardIconEl);
+
             cardEl.appendChild(cardTempEl);
             cardEl.appendChild(cardWindEl);
 
-            document.querySelector("#forcast").appendChild(cardEl);
+            document.querySelector("#forecast").appendChild(cardEl);
 
-            // document.querySelector("#forcast").innerHTML +=
-            //   "<div class='card'>" +
-            //   (dateContent.toLocaleDateString() + "</div>");
-
-            // var tempContent = weatherData.daily[i].temp.max;
-            // document.querySelector("#forcast").innerHTML +=
-            //   "<div class='card'>" + (tempContent + "</div>");
-            i += 1;
+            i++;
           }
         });
     });

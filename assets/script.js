@@ -50,9 +50,62 @@ function getWeatherData() {
 
           var i = 0;
           while (i < 5) {
-            var content = new Date(weatherData.daily[i].dt * 1000);
-            document.querySelector("#deez-nutz").innerHTML +=
-              "<div class='card'>" + (content.toLocaleDateString() + "</div>");
+            var dateContent = new Date(weatherData.daily[i].dt * 1000);
+            var cardEl = document.createElement("div");
+            cardEl.className = "card";
+
+            var cardIconEl = document.createElement("div");
+            cardIconEl.textContent = weatherData.daily[i].weather[0].main;
+
+            var weatherIcon = $("<img>");
+
+            if (cardIconEl === "Clouds") {
+              weatherIcon.attr(
+                "src",
+                "https://img.icons8.com/color/48/000000/cloud.png"
+              );
+            } else if (cardIconEl === "Clear") {
+              weatherIcon.attr(
+                "src",
+                "https://img.icons8.com/color/48/000000/summer.png"
+              );
+            } else if (cardIconEl === "Snow") {
+              weatherIcon.attr(
+                "src",
+                "https://img.icons8.com/color/48/000000/snow.png"
+              );
+            } else if (cardIconEl === "Rain") {
+              weatherIcon.attr(
+                "src",
+                "https://img.icons8.com/color/48/000000/rain.png"
+              );
+            }
+
+            var cardDateEl = document.createElement("div");
+            // cardDateEl.className = "card";
+            cardDateEl.textContent = dateContent.toLocaleDateString();
+
+            var cardTempEl = document.createElement("div");
+            // cardTempEl.className = "card";
+            cardTempEl.textContent = weatherData.daily[i].temp.max;
+
+            var cardWindEl = document.createElement("div");
+            cardWindEl.textContent = weatherData.daily[i].wind_speed;
+
+            cardEl.appendChild(cardDateEl);
+            cardEl.appendChild(cardIconEl);
+            cardEl.appendChild(cardTempEl);
+            cardEl.appendChild(cardWindEl);
+
+            document.querySelector("#forcast").appendChild(cardEl);
+
+            // document.querySelector("#forcast").innerHTML +=
+            //   "<div class='card'>" +
+            //   (dateContent.toLocaleDateString() + "</div>");
+
+            // var tempContent = weatherData.daily[i].temp.max;
+            // document.querySelector("#forcast").innerHTML +=
+            //   "<div class='card'>" + (tempContent + "</div>");
             i += 1;
           }
         });

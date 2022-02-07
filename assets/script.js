@@ -1,6 +1,8 @@
 var submitButton = document.querySelector("#city-search");
 submitButton.addEventListener("click", getWeatherData);
-
+var cityList = $("#city-list");
+// var city1 = $("#city");
+// console.log(city1);
 var cities = [];
 
 var cityInfo = document.querySelector("#city");
@@ -12,9 +14,45 @@ function getWeatherData() {
   var cityName = cityInfo.value;
   var saveCity = localStorage.setItem("city-list", JSON.stringify(cityName));
   var printCity = localStorage.getItem("city-list");
+
+  // $("#add-city").on("click", function (event) {
+  //   event.preventDefault();
+
+  //   var city = $("#city").val().trim();
+
+  //   cities.push(city);
+  // });
+
+  // function storeCities() {
+  //   // Stringify and set "cities" key in localStorage to cities array
+  //   localStorage.setItem("cities", JSON.stringify(cities));
+  //   console.log(localStorage);
+  // }
+
+  // function renderCities() {
+  //   // Clear cityList element
+  //   // cityList.text = "";
+  //   // cityList.HTML = "";
+  //   cityList.empty();
+
+  //   // Render a new li for each city
+  //   for (var i = 0; i < cities.length; i++) {
+  //     var city = cities[i];
+
+  //     var li = $("<li>").text(city);
+
+  //     cityList.prepend(li);
+  //   }
+  // }
+
+  // var citiesArray = JSON.parse(printCity);
+  // document.getElementById("city-list").innHTML = citiesArray;
+  // document.getElementById("city-list").appendChild(ul);
+
   // console.log(printCity);
 
   document.querySelector("#city-name").textContent = cityName;
+  document.querySelector("#city-list").textContent = cityName;
 
   var geoCodingURL =
     "http://api.openweathermap.org/geo/1.0/direct?q=" +

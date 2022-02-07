@@ -55,7 +55,7 @@ function getWeatherData() {
   document.querySelector("#city-list").textContent = cityName;
 
   var geoCodingURL =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
     cityName +
     "&appid=" +
     apiKey;
@@ -100,7 +100,7 @@ function getWeatherData() {
             var cardIconEl = document.createElement("div");
             cardIconEl.textContent = weatherData.daily[i].weather[0].icon;
 
-            var openWeatherIcon = `http://openweathermap.org/img/wn/${weatherData.daily[i].weather[0].icon}@2x.png`;
+            var openWeatherIcon = `https://openweathermap.org/img/wn/${weatherData.daily[i].weather[0].icon}@2x.png`;
             let weatherIcon = document.createElement("img");
             weatherIcon.src = openWeatherIcon;
 

@@ -3,17 +3,38 @@ submitButton.addEventListener("click", getWeatherData);
 var cityList = $("#city-list");
 // var city1 = $("#city");
 // console.log(city1);
-var cities = [];
+var cities = JSON.parse(localStorage.getItem("city-list")) || [];
 
 var cityInfo = document.querySelector("#city");
 
 var apiKey = "73bbd2f586aef621510ff0f4728c0bc6";
+function createButton(name) {
+  var newButton = document.createElement("button");
+  newButton.addEventListener("click", function (event) {
+    cityInfo.value = event.target.textContent;
+
+    getWeatherData();
+  });
+  newButton.textContent = name;
+  cityList.append(newButton);
+}
+
+// createButton("New York");
+
+cities.forEach(function (city) {
+  createButton(city);
+});
 
 function getWeatherData() {
   var cityInfo = document.querySelector("#city");
   var cityName = cityInfo.value;
-  var saveCity = localStorage.setItem("city-list", JSON.stringify(cityName));
+
   var printCity = localStorage.getItem("city-list");
+
+  cities.push(cityName);
+
+  var saveCity = localStorage.setItem("city-list", JSON.stringify(cities));
+  console.log(cities);
 
   // $("#add-city").on("click", function (event) {
   //   event.preventDefault();
@@ -52,7 +73,7 @@ function getWeatherData() {
   // console.log(printCity);
 
   document.querySelector("#city-name").textContent = cityName;
-  document.querySelector("#city-list").textContent = cityName;
+  createButton(cityName);
 
   var geoCodingURL =
     "https://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -90,6 +111,42 @@ function getWeatherData() {
             weatherData.current.humidity;
 
           document.querySelector("#uv").textContent = weatherData.current.uvi;
+
+          //   var uvColor = document.querySelector("#uv");
+
+          //   var displayColor function()
+
+          //   if (
+          //     weatherData.current.uvi.value > 0 &&
+          //     weatherData.current.uvi.value <= 2
+          //   ) {
+          //     uvColor.attr("class", "green");
+          //   } else if (
+          //     weatherData.current.uvi.value > 2 &&
+          //     weatherData.current.uvi.value <= 5
+          //   ) {
+          //     uvColor.attr("class", "yellow");
+          //   } else if (
+          //     weatherData.current.uvi.value > 5 &&
+          //     weatherData.current.uvi.value <= 7
+          //   ) {
+          //     uvColor.attr("class", "orange");
+          //   } else if (
+          //     weatherData.current.uvi.value > 7 &&
+          //     weatherData.current.uvi.value <= 10
+          //   ) {
+          //     uvColor.attr("class", "red");
+          //   } else {
+          //     uvColor.attr("class", "purple");
+          //   }
+          // }
+
+          // fetch(weatherURL)
+          // .then((response) => response.json())
+
+          // .then(response) => {
+          //   let uvIndex = weatherData.current.uvi
+          // }
 
           var i = 0;
           while (i < 5) {

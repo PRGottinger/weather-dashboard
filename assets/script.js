@@ -21,9 +21,9 @@ function createButton(name) {
 
 // createButton("New York");
 
-cities.forEach(function (city) {
-  createButton(city);
-});
+// cities.forEach(function (city) {
+//   createButton(city);
+// });
 
 function getWeatherData() {
   var cityInfo = document.querySelector("#city");

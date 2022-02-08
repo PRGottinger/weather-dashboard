@@ -21,9 +21,9 @@ function createButton(name) {
 
 // createButton("New York");
 
-// cities.forEach(function (city) {
-//   createButton(city);
-// });
+cities.forEach(function (city) {
+  createButton(city);
+});
 
 function getWeatherData() {
   var cityInfo = document.querySelector("#city");
@@ -31,7 +31,7 @@ function getWeatherData() {
 
   var printCity = localStorage.getItem("city-list");
 
-  cities.push(cityName);
+  // cities.push(cityName);
 
   var saveCity = localStorage.setItem("city-list", JSON.stringify(cities));
   console.log(cities);
